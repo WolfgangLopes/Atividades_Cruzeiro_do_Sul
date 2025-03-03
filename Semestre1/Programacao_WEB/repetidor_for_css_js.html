@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS e Javascript</title>
+    <!--Repetidor do tipo for utilizando CSS e JavaScript-->
+    <style>
+        .tabela{
+            box-shadow: 12px 12px 12px lightblue;
+            background-color: darkslateblue;
+            border-style: solid;
+            border-width: 3px;
+            border-color: blue;
+            }
+        .celula{
+            background-color:burlywood ;
+            border-style: dashed;
+            border-width:1px;
+            border-color:brown;
+            width: 60px;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }  
+        .cabecalho{
+            font-weight: 700;
+            background-color:darkturquoise;
+        }  
+    </style>
+    <script>
+        
+    </script>
+</head>
+<body>
+    <h3> Exemplo de comando for - Tabela de quadrados de 1 20 </h3>
+    <table class = 'tabela' >
+        <tr> 
+            <td class = 'celula cabecalho'>v</td>
+             <td class = 'celula cabecalho'>v²</td>
+        </tr>
+<script>
+    let v;
+    for(v=1; v<=20; v++){
+        document.write("<tr>");
+        document.write("<td class ='celula'>"+v+"</td>"+
+        "<td class ='celula'>"+(v*v)+"</td>");
+        document.write("</tr>");
+    }
+</script>
+    </table>
+    <br /> <br />
+    
+</body>
+</html>

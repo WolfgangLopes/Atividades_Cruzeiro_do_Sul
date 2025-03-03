@@ -1,0 +1,53 @@
+body{background-color: black;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+    input[name=Nome] {
+    margin:1%;
+    width: 75%; background-color:white;}
+    input[name=Email]{
+        margin:1%;
+        width: 75%;background-color: white;        
+    }
+    select[type=opcoes]{
+        margin:1%;
+        border:ridge; border-color: black;
+    }
+form {border:ridge;
+    padding:2px ;
+    border-color:chocolate;background-color:tan;display: inline-block;
+    border-radius:15px; 
+    position:fixed;top:15%;left:35%;width:600px;
+    }
+    h1{text-align:center;}
+    .botao{
+        margin:0 auto;
+        display: block;
+        align-items: center;
+        }
+    input[type=button][class=botao]{
+    margin:0 auto;
+    display: block;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color:saddlebrown ;
+    padding: 16px 32px;
+    width: 40%;
+  }  
+  div{padding:1px;margin-left: 5px;}
+  textarea {
+    width: 95%;
+    height: 175px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    }
+    
+    
+    
+       
+    
+
+

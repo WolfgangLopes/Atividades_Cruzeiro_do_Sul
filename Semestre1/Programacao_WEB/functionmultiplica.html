@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+                function multiplicaA(a,b){
+            alert("Multiplicando no procedimento = "+(a*b));
+        }
+        function multiplicaB(a,b){
+            let result;
+            result = (a*b);
+            return (result);
+            //Ou simplesmente: return(a*b);
+        }              
+
+        n1=(prompt("Digite um número"));
+        n2=(prompt("Digite outro número"));
+        
+        a=parseInt(n1);
+        b=parseInt(n2);
+
+        multiplicaA(a,b); //Chamamos o procedimento
+        let res = multiplicaB(a,b); //Chamamos a função.
+        alert("Multiplicação com a função " + res);        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

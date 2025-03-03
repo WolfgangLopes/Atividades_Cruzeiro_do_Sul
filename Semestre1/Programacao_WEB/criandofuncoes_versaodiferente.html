@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--As funções são criadas no <head> ou arquivo .js-->
+    <!--Caso precise retornar uma resposta no ponto em que foi chamada, é usado o comando "return"-->
+    <!--function nome(param1, param2...)-->
+    <title>Função Return</title>
+    <script>
+        //ES5
+        function somaV1(a,b){
+            return ("Soma: "+(a+b)+"</br>");
+        }
+        //ou
+        var somaV2 = function(a,b){
+        return("Soma: "+ (a+b)+"</br>");
+    }
+    //ES6
+    const somaV3=(a,b) =>{
+        return ("Soma: "+(a+b)+"</br>");
+    }
+    </script>
+</head>
+<body>
+    <h2> Exemplo de Funções </h2>
+    <script>
+        document.write(somaV1(5,5));
+        document.write(somaV2(10,20));
+        document.write(somaV3(130,230));
+    </script>
+    
+</body>
+</html>

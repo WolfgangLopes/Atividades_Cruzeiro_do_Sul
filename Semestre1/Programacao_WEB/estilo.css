@@ -1,0 +1,7 @@
+/* Css Documento - Comentário */
+/* A seleção de fontes em sucessão existem para criar fontes reservas caso o usuário não possua a fonte inicial desejada */
+p{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:chocolate;
+    font-size: 50pt;
+    }

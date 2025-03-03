@@ -1,0 +1,23 @@
+-- CREATE TABLE TB_TERCEIRA (
+--    codigo number NOT NULL,
+--    nome varchar(150) NOT NULL,
+--    cidade varchar(150) NOT NULL,
+--    estado varchar(2) NOT NULL,
+--    cep number NOT NULL,
+--    constraint TB_TERCEIRA_codigo_pk primary key (codigo)
+-- );
+
+-- INSERT INTO TB_PRIMEIRA(
+--    codigo,nome,cidade,estado,cep
+-- ) VALUES (7, 'João', 'São Paulo', 'SP', 206468400 )
+
+-- "CTRL /" é um comando que transforma todo o texto selecionado em comentários.
+
+-- SELECT * FROM TB_PRIMEIRA
+
+--Para deletar tabela: 
+--DROP TABLE
+
+--Para separar comandos utilize ; assim como no Java
+
+-- ALTER TABLE
