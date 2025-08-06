@@ -1,0 +1,139 @@
+N
+1) Implemente, em Java, uma classe abstrata de nome Quadrilatero onde são
+declarados dois métodos abstratos:
+float calcularArea();
+  float calcularPerimetro();
+
+2) Crie, como subclasse de Quadrilatero, uma classe de nome Retangulo cujas instâncias
+são caracterizadas pelos atributos lado e altura ambos do tipo float. Implemente na
+classe Retangulo os métodos herdados de Quadrilatero e outros que ache necessários.
+Classe retângulo
+
+3 - Crie, como subclasse de Quadrilatero, uma classe de nome Circulo cujas instâncias
+são caracterizadas pelo atributo raio do tipo float. Implemente na classe Circulo os
+métodos herdados de Quadrilatero e outros que ache necessários.
+Nota: poderá aceder ao valor de Pi fazendo Math.Pi.
+classe de nome Circulo
+
+4 - Crie, como subclasse de Retangulo, uma classe de nome Quadrado cujas instâncias
+são caracterizadas por terem os atributos lado e altura com o mesmo valor.
+classe de nome Quadrado
+
+5 - Elabore um programa de teste onde é declarado um array, de dimensão 5, do tipo
+estático Quadrilatero. Nesse array devem ser guardadas instâncias de Retângulo, Circulo
+e Quadrado seguindo uma ordem aleatória. Nota: para gerar números aleatórios crie
+primeiro uma instância da classe Random (presente na biblioteca java.util) e para extrair
+um inteiro entre 0 e n efetue a evocação nextInt(n). Depois implemente um ciclo que
+percorra o array evocando, relativamente a cada um dos objetos guardados, os métodos
+calcularArea e calcularPerimetro. programa de teste.
+
+1. Classe Abstrata Quadrilate1. Classe Abstrata Quadrilatero
+java
+
+Copiar código
+abstract class Quadrilatero {
+    abstract float calcularArea();
+    abstract float calcularPerimetro();
+}
+2. Classe Retangulo
+java
+
+Copiar código
+class Retangulo extends Quadrilatero {
+    private float lado;
+    private float altura;
+
+    public Retangulo(float lado, float altura) {
+        this.lado = lado;
+        this.altura = altura;
+    }
+
+    @Override
+    float calcularArea() {
+        return lado * altura;
+    }
+
+    @Override
+    float calcularPerimetro() {
+        return 2 * (lado + altura);
+    }
+
+    public float getLado() {
+        return lado;
+    }
+
+    public float getAltura() {
+        return altura;
+    }
+}
+3. Classe Circulo
+java
+
+Copiar código
+class Circulo extends Quadrilatero {
+    private float raio;
+
+    public Circulo(float raio) {
+        this.raio = raio;
+    }
+
+    @Override
+    float calcularArea() {
+        return (float) (Math.PI * Math.pow(raio, 2));
+    }
+
+    @Override
+    float calcularPerimetro() {
+        return (float) (2 * Math.PI * raio);
+    }
+
+    public float getRaio() {
+        return raio;
+    }
+}
+4. Classe Quadrado
+java
+
+Copiar código
+class Quadrado extends Retangulo {
+    public Quadrado(float lado) {
+        super(lado, lado);
+    }
+}
+5. Programa de Teste
+java
+
+Copiar código
+import java.util.Random;
+
+public class TesteQuadrilatero {
+    public static void main(String[] args) {
+        Quadrilatero[] figuras = new Quadrilatero[5];
+        Random random = new Random();
+
+        // Criando instâncias aleatórias de Retangulo, Circulo e Quadrado
+        for (int i = 0; i < figuras.length; i++) {
+            int tipo = random.nextInt(3); // 0 para Retangulo, 1 para Circulo, 2 para Quadrado
+            switch (tipo) {
+                case 0:
+                    figuras[i] = new Retangulo(random.nextFloat() * 10, random.nextFloat() * 10);
+                    break;
+                case 1:
+                    figuras[i] = new Circulo(random.nextFloat() * 10);
+                    break;
+                case 2:
+                    figuras[i] = new Quadrado(random.nextFloat() * 10);
+                    break;
+            }
+        }
+
+        // Calculando e exibindo área e perímetro de cada figura
+        for (Quadrilatero figura : figuras) {
+            System.out.println("Área: " + figura.calcularArea());
+            System.out.println("Perímetro: " + figura.calcularPerimetro());
+            System.out.println();
+        }
+    }
+}
+
+(ദ്ദി˙ᗜ˙)  ¯\_(ツ)_/¯ 👍
