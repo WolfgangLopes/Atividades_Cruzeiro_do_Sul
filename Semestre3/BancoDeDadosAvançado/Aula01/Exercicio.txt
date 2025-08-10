@@ -1,0 +1,98 @@
+-- Exercicio 1
+
+
+CREATE TABLE alunos (
+
+  id_alunos number,
+
+  nome varchar(50),
+
+  CONSTRAINT alunos_id_alunos_pk PRIMARY KEY (id_alunos)
+
+);
+
+
+CREATE TABLE matricula(
+
+  id_matricula number,
+
+  id_alunos number,
+
+  curso varchar(50),
+
+  CONSTRAINT matricula_id_matricula_pk PRIMARY KEY (id_matricula),
+
+  CONSTRAINT matricula_id_aluno_fk FOREIGN KEY (id_alunos) REFERENCES aluno(id_alunos)
+
+  ON DELETE CASCADE
+
+  );
+
+
+
+--Exercicio 2
+
+--1. Criar as Tabelas
+
+CREATE TABLE cursos(
+
+  curso_id number,
+
+  nome varchar(50),
+
+  CONSTRAINT cursos_curso_id_pk PRIMARY KEY (curso_id)
+
+);
+
+
+CREATE TABLE alunos(
+
+  aluno_id number,
+
+  nome varchar(50),
+
+  curso_id number,
+
+  CONSTRAINT alunos_aluno_id_pk PRIMARY KEY (aluno_id),
+
+  CONSTRAINT alunos_curso_id_fk FOREIGN KEY (curso_id) REFERENCES cursos(curso_id)
+
+);
+
+
+--2. Adicionar Dados
+
+INSERT INTO cursos(curso_id,nome) VALUES
+
+ (1,'ADS'),
+
+ (2, 'Ciência da computação'),
+
+ (3,'Engenharia de software');
+
+
+ INSERT INTO alunos(aluno_id, nome, curso_id) VALUES
+
+ (1,'João',2),
+
+ (2,'José',3),
+
+ (3,'Joaquim',2),
+
+ (4,'Jonas',1),
+
+ (5,'Jonathan',3);
+
+
+--3. Verificar Integridade Referencial
+
+ INSERT INTO alunos(aluno_id,nome,curso_id) VALUES (6,'Joseph',4);
+
+ DELETE FROM cursos where nome='ADS';
+
+
+--4. Remover as Restrições
+
+ ALTER TABLE alunos DROP CONSTRAINT alunos_curso_id_fk;
+
+
