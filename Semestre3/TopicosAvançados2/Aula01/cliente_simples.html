@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestão de Pedido Simplificado</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    th {
+      background-color: #ddd;
+    }
+    input[type=number] {
+      width: 70px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Lista de Itens do Pedido</h2>
+
+  <form id="formAdicionar">
+    <input name="item" placeholder="Item" required />
+    <input name="quantidade" type="number" min="1" placeholder="Quantidade" required />
+    <input name="valorUnitario" type="number" min="0" step="0.01" placeholder="Valor Unit." required />
+    <button type="submit">Adicionar</button>
+  </form>
+
+  <table id="tabelaPedido" style="margin-top:20px; width: 100%;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Item</th>
+        <th>Quantidade</th>
+        <th>Valor Unitário (R$)</th>
+        <th>Valor Total (R$)</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" style="text-align:right; font-weight:bold;">Total Geral:</td>
+        <td colspan="2" id="totalGeral" style="font-weight:bold;">R$ 0,00</td>
+      </tr>
+    </tfoot>
+  </table>
+
+<script>
+  let pedidos = [];
+  let contadorId = 1;
+
+  function formatar(valor) {
+    return "R$ " + valor.toFixed(2).replace(".", ",");
+  }
+
+  function atualizarTabela() {
+    const tbody = document.querySelector("#tabelaPedido tbody");
+    tbody.innerHTML = "";
+    let totalGeral = 0;
+
+    pedidos.forEach(pedido => {
+      const valorTotal = pedido.quantidade * pedido.valorUnitario;
+      totalGeral += valorTotal;
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${pedido.id}</td>
+        <td>${pedido.item}</td>
+        <td>${pedido.quantidade}</td>
+        <td>${formatar(pedido.valorUnitario)}</td>
+        <td>${formatar(valorTotal)}</td>
+        <td>
+          <button onclick="editarPedido(${pedido.id})">Editar</button>
+          <button onclick="excluirPedido(${pedido.id})">Excluir</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById("totalGeral").textContent = formatar(totalGeral);
+  }
+
+  document.getElementById("formAdicionar").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const item = formData.get("item");
+    const quantidade = parseInt(formData.get("quantidade"));
+    const valorUnitario = parseFloat(formData.get("valorUnitario"));
+
+    pedidos.push({
+      id: contadorId++,
+      item,
+      quantidade,
+      valorUnitario
+    });
+
+    this.reset();
+    atualizarTabela();
+  });
+
+  function editarPedido(id) {
+    const pedido = pedidos.find(p => p.id === id);
+    if (!pedido) return alert("Pedido não encontrado");
+
+    const novoItem = prompt("Editar item:", pedido.item);
+    if (novoItem === null) return; // cancelou
+
+    let novaQuantidade = prompt("Editar quantidade:", pedido.quantidade);
+    if (novaQuantidade === null) return;
+    novaQuantidade = parseInt(novaQuantidade);
+    if (isNaN(novaQuantidade) || novaQuantidade < 1) {
+      alert("Quantidade inválida");
+      return;
+    }
+
+    let novoValor = prompt("Editar valor unitário:", pedido.valorUnitario.toFixed(2).replace('.', ','));
+    if (novoValor === null) return;
+    // Trocar vírgula por ponto e converter para número
+    novoValor = parseFloat(novoValor.replace(',', '.'));
+    if (isNaN(novoValor) || novoValor < 0) {
+      alert("Valor unitário inválido");
+      return;
+    }
+
+    pedido.item = novoItem;
+    pedido.quantidade = novaQuantidade;
+    pedido.valorUnitario = novoValor;
+
+    atualizarTabela();
+  }
+
+  function excluirPedido(id) {
+    if (confirm("Deseja realmente excluir este item?")) {
+      pedidos = pedidos.filter(p => p.id !== id);
+      atualizarTabela();
+    }
+  }
+
+  atualizarTabela();
+</script>
+</body>
+</html>
