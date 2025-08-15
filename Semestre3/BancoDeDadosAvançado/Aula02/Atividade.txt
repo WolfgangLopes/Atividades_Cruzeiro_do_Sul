@@ -1,0 +1,35 @@
+CREATE TABLE clientes(
+    cliente_id int PRIMARY KEY NOT NULL,
+    nome VARCHAR(50),
+    email VARCHAR(50),
+    data_cadastro DATE
+    )
+
+CREATE TABLE produtos (
+    produto_id int PRIMARY KEY,
+    nome VARCHAR(50),
+    preco DECIMAL,
+    categoria VARCHAR(50)
+)
+
+CREATE TABLE vendas (
+    vendas_id int PRIMARY KEY,
+    cliente_id int,
+    produto_id int,
+    data_venda date,
+    quantidade int,
+    CONSTRAINT fk_vendas_cliente FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id),
+    CONSTRAINT fk_vendas_produto FOREIGN KEY (produto_id) REFERENCES produtos(produto_id)
+)
+
+CREATE VIEW analise_de_vendas AS
+    SELECT c.nome AS Nome_do_cliente,
+    c.email AS Email_do_cliente,
+    p.nome AS Nome_do_produto,
+    p.preco AS Preço_do_produto,
+    v.quantidade AS Quantidade_comprada,
+    v.data_venda AS Data_da_venda,
+    v.quantidade*p.preco AS Total_gasto
+    FROM vendas v join produtos p ON
+    v.produto_id = p.produto_id
+    JOIN clientes c ON v.cliente_id = c.cliente_id
