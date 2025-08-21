@@ -1,0 +1,25 @@
+create table clientes(
+    cliente_id number primary key not null,
+    nome varchar2(100) not null,
+    email varchar2(100) not null
+);
+
+create table clientes_backup(
+    cliente_id number primary key not null,
+    nome varchar2(100) not null,
+    email varchar2(100) not null
+);
+
+create index idx_clientes_nome on clientes(nome);
+
+select * from all_indexes where index_name= 'IDX_CLIENTES_NOME';
+
+insert into clientes values(1,'José de Sousa', 'jose@gmail.com');
+insert into clientes values(2,'João da Silva', 'joao@gmail.com');
+insert into clientes values(3, 'Maria de Jesus', 'maria@gmail.com');
+
+insert into clientes_backup(cliente_id, nome, email)
+SELECT cliente_id, nome, email from clientes where cliente_id=1;
+
+insert into clientes_backup(cliente_id, nome, email)
+SELECT cliente_id, nome, email from clientes where nome like '%Ma%';
