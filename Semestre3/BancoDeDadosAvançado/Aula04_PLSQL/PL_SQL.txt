@@ -1,0 +1,52 @@
+DECLARE
+v_message VARCHAR2(100);
+BEGIN
+v_message := 'Olá, mundo';
+dbms_output.put_line(v_message);
+END;
+
+DECLARE
+ salary number;
+BEGIN
+    salary :=5000;
+    dbms_output.put_line('Salário: '|| salary);
+END;
+
+DECLARE
+    v_grade char(1);
+BEGIN
+    v_grade := 'B';
+    case v_grade
+     WHEN 'A' then dbms_output.put_line('Excelente');
+     WHEN 'B' then dbms_output.put_line('Muito Bom');
+     WHEN 'C' then dbms_output.put_line('Bom');
+     WHEN 'D' then dbms_output.put_line('Justo');
+    ELSE dbms_output.put_line('Sem valor');
+    end case;    
+END;
+
+DECLARE
+    v_number number:= 10;
+    v_result number;
+BEGIN
+    v_result := v_number/0;
+    dmbs_output.put_line('A divisão de 10/2 é ' || v_result);
+EXCEPTION
+    when zero_divide then
+        dmbs_output.put_line('Erro: divisão por zero!');
+    when others then
+        dmbs_output.put_line('Erro desconhecido!');
+END;
+
+DECLARE
+ v_nota NUMBER; 
+ v_nome VARCHAR2(20);
+BEGIN
+    v_nota:=7;
+    v_nome:='João';
+    CASE v_nota
+        WHEN >=6 THEN dbms_output.put_line(v_nome || 'Aprovado');
+        WHEN <6 THEN dbms_output.put_line(v_nome || 'Reprovado');
+        ELSE dbms_output.put_line('Nota inválida');
+    END CASE;
+END;
