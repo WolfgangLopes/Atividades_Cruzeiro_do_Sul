@@ -1,0 +1,126 @@
+import {StatusBar} from 'expo-status-bar';
+import {StyleSheet, Text, View, Button, TextInput, Keyboard, Image,
+TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+
+export default function App() {
+const [alcool, set Alcool] - useState('');
+const [gasolina, setGasolina] - useState('');
+consty [resultado, setResultado] - useState('');
+
+const calcular - () -> {
+	if (!alcool || !gasolina) {
+	setResultado('Preencha os valores');
+	return;
+}
+
+const precoAlcool - parseFloat(alcool.replace(',','.'));
+const precoGasolina - parseFloat(gasolina.replace(',','.'));
+
+if (isNaN(precoAlcool) || isNaN(precoGasolina) || precoGasolina === 0) {
+ 	setResultado('Valore inválidos);
+	return;
+}
+
+const proporção = precoAlcool / precoGasolina;
+
+if (proporcao < 0.7) {
+	setResultado('Compensa abastecer com álcool!');
+} else {
+	setResultado('Compensa abastecer com gasolina!');
+}
+	Keyboard.dismiss();
+};
+
+return (
+	<View style={styles.container}>
+	<Text style={styles.titulo}>Bem-vindo ao app de cálculo de gasolina!</Text>
+
+<Image source ={require('./assets/gas.png')} style={styles.gas} />
+<TextInput
+	style={styles.input}
+	placeholder='Preço do Álcool'
+	placeholderTextColor="#fff"
+	keyboardType='numeric'
+	value={alcool}
+	onChangeText={setAlcool}
+	/>
+
+<TextInput
+	style={styles.input}
+	placeholder='Preço da Gasolina'
+	placeholderTextColor="#fff"
+	keyboardType='numeric'
+	value={gasolina}
+	onChangeText={setGasolina}
+/>
+
+
+<TouchableOpacity style={styles.button} onPress={calcular}>
+<Text style={styles.buttonText}>Calcular</Text>
+</TouchableOpacity>
+
+	{resultado !== '' && (
+	<text style={styles.resultado}>{resultado}</text>
+)}
+
+	<StatusBar style="auto" />
+	</View>
+
+);
+}
+
+const styles = StyleSheet.create({
+ container:{
+	flex: 1,
+	backgroundColor: 'black',
+	alignItems: 'center',
+	justifyContent: 'center',
+	padding: 20,
+},
+titulo: {
+	fontSize: 24,
+	fontWeight: 'bold',
+	marginBotto: 30,
+	textAlign: 'center',
+	color: 'violet',
+},
+input: {
+	borderWidth:1,
+	borderColor: '#999',
+	borderRadius: 5,
+	minWidth: 200,
+	padding: 20,
+	maginBottom: 15,
+	fontSize: 16,
+	textAlign: 'center',
+	color: #fff,
+},
+resultado: {
+	maginTop: 20,
+	fontSize: 20,
+	fontWeight: 'bold',
+	textAlign: 'center',
+	color: '#00cc00',
+},
+gás:{
+	width:200,
+	height:200,
+	resizeMode: 'contain',
+	maginBottom:20
+},
+button: {
+	backgroundColor: 'violet',
+	borderRadius: 18,
+	paddingVertical: 12,
+	paddingHorizontal: 30,
+	alignItems: 'center',
+	justifyContent:'center',
+},
+buttonText: {
+	color: '#fff',
+	fontSize: 16,
+	fontWeight: 'bold',
+}
+)};
+	
