@@ -1,0 +1,43 @@
+CREATE TABLE clientes (
+    id NUMBER PRIMARY KEY NOT NULL,
+    nome VARCHAR2(50) NOT NULL
+);
+
+DECLARE
+    v_id NUMBER:= 1;
+    v_novo_nome VARCHAR2(50):='Maria da Silva';
+BEGIN
+    UPDATE clientes set nome = v_novo_nome WHERE id = v_id;
+    COMMIT;        
+END;
+
+--Apesar da operação ocorrer com sucesso, ela é falha pois atualiza dados que ainda não existem,
+--resultando na tabela continuando vazia.
+
+INSERT INTO clientes (nome, id) VALUES('José', 1);
+
+DECLARE 
+v_idade number:=18;
+BEGIN
+    if v_idade >= 18 THEN
+    dbms_output.put_line('Sua idade é: ' || v_idade || ', você é MAIOR de idade');
+    else dbms_output.put_line('Sua idade é: '|| v_idade || ', você é menor de idade');
+    end if;    
+END;
+
+DECLARE
+v_nome VARCHAR2(50);
+v_nota number:=3;
+v_nota2 number:=2;
+v_maior_nota number;
+v_nota_af number:=4;
+v_nota_final number:= v_nota+v_nota2;
+BEGIN
+        if v_nota > v_nota2 THEN v_maior_nota:= v_nota;
+        else v_maior_nota:= v_nota2;
+        end if;
+        if v_nota_final>=6 THEN dbms_output.put_line('Sua nota final é: ' || v_nota_final || 'Parabéns, '|| v_nome || ', você foi aprovado');
+        elsif (v_maior_nota + v_nota_af)>=6 THEN v_nota_final:=(v_maior_nota+v_nota_af); dbms_output.put_line('Sua nota final é: '|| v_nota_final || ' parabéns '|| v_nome || ', você foi aprovado');
+        else dbms_output.put_line('Sua nota final é: '||v_nota_final || ', sinto muito,' || v_nome || ' você foi reprovado');
+        end if;
+END;
