@@ -1,8 +1,17 @@
 const Cliente = require('../models/clienteModel');
 
 exports.listar = (req, res) => {
-  Cliente.listar((err, results) => {
-    res.render('index', { clientes: results });
+  const busca = req.query.busca || '';
+
+  Cliente.buscarClientes(busca, (err, results) => {
+    if (err) {
+      return res.status(500).send("Erro ao buscar clientes");
+    }
+
+    res.render('index', { 
+      clientes: results,
+      termoBusca: busca
+    });
   });
 };
 
@@ -47,12 +56,6 @@ exports.detalhes = (req, res) => {
   Cliente.buscarPorId(req.params.id, (err, results) => {
     res.render('detalhes', { cliente: results[0] });
   });
-};
-exports.pesquisar = async (req,res)=>{
-  try{
-    const search = req.query.search || "";
-  }catch(err){
-  console.log(err);
-  res.status(500).json({ error: true, message: "Erro interno do servidor"});
-};
-};
+}; 
+        
+

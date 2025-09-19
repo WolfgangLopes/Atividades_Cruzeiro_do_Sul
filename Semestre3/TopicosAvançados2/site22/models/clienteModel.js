@@ -36,5 +36,18 @@ module.exports = {
   
   buscaNomeTelefone: (nome,telefone,q,callback) =>{
     db.query('SELECT id, nome, endereco, telefone, cpf, email, DATE_FORMAT(data_nascimento, "%d/%m/%Y") AS data_nascimento FROM clientes WHERE nome OR telefone LIKE %?%', [q], callback)
-  }
+  },
+
+  buscarClientes:(termoBusca, callback) => {
+    const query = `
+        SELECT * FROM clientes 
+        WHERE nome LIKE ? OR telefone LIKE ?
+    `;
+    const buscaFormatada = `%${termoBusca}%`;
+
+    db.query(query, [buscaFormatada, buscaFormatada], (err, results) => {
+        if (err) return callback(err);
+        callback(null, results);
+    });
+}
 };
