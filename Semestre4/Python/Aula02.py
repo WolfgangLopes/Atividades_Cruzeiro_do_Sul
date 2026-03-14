@@ -12,5 +12,5 @@ while(i<4):
 
 media = (nota[0]+nota[1]+nota[2]+nota[3])/4
 
-print("Média das notas: ", media)
+print(f'Média das notas:  {media: .2f}')
 
